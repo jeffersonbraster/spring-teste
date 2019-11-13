@@ -1,5 +1,7 @@
 package spring.data.persistence;
 
+import java.util.Optional;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,13 +21,23 @@ public class AppSpringDataTeste {
 	@Test
 	public void testeInsert() {
 		UsuarioSpringData usuarioSpringData = new UsuarioSpringData();
-		usuarioSpringData.setNome("jeje");
-		usuarioSpringData.setLogin("jejezinho");
-		usuarioSpringData.setSenha("liana123");
+		usuarioSpringData.setNome("feliz");
+		usuarioSpringData.setLogin("felisardo");
+		usuarioSpringData.setSenha("123");
 		
 		interfaceSpringData.save(usuarioSpringData);
 	}
 	
+	
+	@Test
+	public void testeConsulta() {
+		Optional<UsuarioSpringData> usuarioSpringData = interfaceSpringData.findById(3L);
+		
+		System.out.println(usuarioSpringData.get().getId());
+		System.out.println(usuarioSpringData.get().getNome());
+		System.out.println(usuarioSpringData.get().getLogin());
+		System.out.println(usuarioSpringData.get().getSenha());
+	}
 	
 	@Test
 	public void teste() {
