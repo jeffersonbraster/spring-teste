@@ -40,6 +40,18 @@ public class AppSpringDataTeste {
 	}
 	
 	@Test
+	public void testeConsultaTodos() {
+		Iterable<UsuarioSpringData> lista = interfaceSpringData.findAll();
+		
+		for (UsuarioSpringData usuarioSpringData : lista) {
+			System.out.println(usuarioSpringData.getNome());
+			System.out.println(usuarioSpringData.getLogin());
+			System.out.println(usuarioSpringData.getSenha());
+			System.out.println("----------------------------------------------");
+		}
+	}
+	
+	@Test
 	public void teste() {
 		System.out.println("Iniciou com sucesso");
 	}
