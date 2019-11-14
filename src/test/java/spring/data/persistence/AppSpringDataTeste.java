@@ -93,6 +93,11 @@ public class AppSpringDataTeste {
 	}
 	
 	@Test
+	public void testeDeletePorNome() {
+		interfaceSpringData.deletePorNome("feliz");
+	}
+	
+	@Test
 	public void teste() {
 		System.out.println("Iniciou com sucesso");
 	}
