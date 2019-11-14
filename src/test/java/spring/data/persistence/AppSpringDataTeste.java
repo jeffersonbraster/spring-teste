@@ -1,5 +1,6 @@
 package spring.data.persistence;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.junit.Test;
@@ -21,8 +22,8 @@ public class AppSpringDataTeste {
 	@Test
 	public void testeInsert() {
 		UsuarioSpringData usuarioSpringData = new UsuarioSpringData();
-		usuarioSpringData.setNome("feliz");
-		usuarioSpringData.setLogin("felisardo");
+		usuarioSpringData.setNome("rosa");
+		usuarioSpringData.setLogin("brandao");
 		usuarioSpringData.setSenha("123");
 		
 		interfaceSpringData.save(usuarioSpringData);
@@ -65,6 +66,18 @@ public class AppSpringDataTeste {
 	@Test
 	public void testeDelete() {
 		interfaceSpringData.deleteById(3L);
+	}
+	
+	@Test
+	public void testeConsultaNome() {
+		List<UsuarioSpringData> list = interfaceSpringData.buscaPorNome("feliz");
+		
+		for (UsuarioSpringData usuarioSpringData : list) {
+			System.out.println(usuarioSpringData.getNome());
+			System.out.println(usuarioSpringData.getLogin());
+			System.out.println(usuarioSpringData.getSenha());
+			System.out.println("----------------------------------------------");
+		}
 	}
 	
 	@Test
