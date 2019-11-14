@@ -10,6 +10,8 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import dao.InterfaceSpringData;
+import dao.InterfaceTelefone;
+import model.Telefone;
 import model.UsuarioSpringData;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -19,11 +21,14 @@ public class AppSpringDataTeste {
 	@Autowired
 	private InterfaceSpringData interfaceSpringData;
 	
+	@Autowired
+	private InterfaceTelefone interfaceTelefone;
+	
 	@Test
 	public void testeInsert() {
 		UsuarioSpringData usuarioSpringData = new UsuarioSpringData();
-		usuarioSpringData.setNome("rosa");
-		usuarioSpringData.setLogin("brandao");
+		usuarioSpringData.setNome("thiago");
+		usuarioSpringData.setLogin("tlira");
 		usuarioSpringData.setSenha("123");
 		
 		interfaceSpringData.save(usuarioSpringData);
@@ -32,12 +37,17 @@ public class AppSpringDataTeste {
 	
 	@Test
 	public void testeConsulta() {
-		Optional<UsuarioSpringData> usuarioSpringData = interfaceSpringData.findById(3L);
+		Optional<UsuarioSpringData> usuarioSpringData = interfaceSpringData.findById(9L);
 		
 		System.out.println(usuarioSpringData.get().getId());
 		System.out.println(usuarioSpringData.get().getNome());
 		System.out.println(usuarioSpringData.get().getLogin());
 		System.out.println(usuarioSpringData.get().getSenha());
+		
+		for (Telefone telefone :  usuarioSpringData.get().getTelefones()) {
+			System.out.println(telefone.getTipo());
+			System.out.println(telefone.getNumero());
+		}
 	}
 	
 	@Test
@@ -47,7 +57,7 @@ public class AppSpringDataTeste {
 		for (UsuarioSpringData usuarioSpringData : lista) {
 			System.out.println(usuarioSpringData.getNome());
 			System.out.println(usuarioSpringData.getLogin());
-			System.out.println(usuarioSpringData.getSenha());
+			System.out.println(usuarioSpringData.getSenha());			
 			System.out.println("----------------------------------------------");
 		}
 	}
@@ -100,6 +110,21 @@ public class AppSpringDataTeste {
 	@Test
 	public void testeUpdatePorId() {
 		interfaceSpringData.updateNomePorId("Andre brandao", 1L);
+	}
+	
+	@Test
+	public void testeTelefone() {
+		
+		Optional<UsuarioSpringData> usuarioSpringData = interfaceSpringData.findById(9L);
+		
+		
+		Telefone telefone = new Telefone();
+		
+		telefone.setTipo("casa");
+		telefone.setNumero("9999999");
+		telefone.setUsuarioSpringData(usuarioSpringData.get());
+		
+		interfaceTelefone.save(telefone);
 	}
 	
 	@Test
