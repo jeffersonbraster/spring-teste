@@ -52,6 +52,17 @@ public class AppSpringDataTeste {
 	}
 	
 	@Test
+	public void update() {
+		Optional<UsuarioSpringData> usuarioSpringData = interfaceSpringData.findById(3L);
+		
+		UsuarioSpringData data = usuarioSpringData.get();
+		
+		data.setNome("Liana Sabino");
+		
+		interfaceSpringData.save(data);
+	}
+	
+	@Test
 	public void teste() {
 		System.out.println("Iniciou com sucesso");
 	}
