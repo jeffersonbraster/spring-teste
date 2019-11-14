@@ -98,6 +98,11 @@ public class AppSpringDataTeste {
 	}
 	
 	@Test
+	public void testeUpdatePorId() {
+		interfaceSpringData.updateNomePorId("Andre brandao", 1L);
+	}
+	
+	@Test
 	public void teste() {
 		System.out.println("Iniciou com sucesso");
 	}
