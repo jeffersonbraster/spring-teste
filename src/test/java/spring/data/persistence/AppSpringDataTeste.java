@@ -81,6 +81,18 @@ public class AppSpringDataTeste {
 	}
 	
 	@Test
+	public void testeConsultaNomeParam() {
+		UsuarioSpringData usuarioSpringData = interfaceSpringData.buscaPorNomeParam("rosa");
+		
+		
+			System.out.println(usuarioSpringData.getNome());
+			System.out.println(usuarioSpringData.getLogin());
+			System.out.println(usuarioSpringData.getSenha());
+			
+		
+	}
+	
+	@Test
 	public void teste() {
 		System.out.println("Iniciou com sucesso");
 	}
